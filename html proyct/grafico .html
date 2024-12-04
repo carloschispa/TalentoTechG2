@@ -1,0 +1,274 @@
+<!-- }<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica de Área de Consumo de Energías</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Gráfica de Área de Consumo de Energías</h1>
+    <canvas id="graficaArea"></canvas>
+
+    <script>
+        const labelsArea = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        const dataArea = {
+            labels: labelsArea,
+            datasets: [
+                {
+                    label: "Electricidad (kWh)",
+                    data: [300, 320, 310, 400, 450, 430, 410, 390, 420, 450, 460, 480],
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    fill: true
+                },
+                {
+                    label: "Hidroeléctrica (kWh)",
+                    data: [200, 190, 180, 210, 220, 200, 230, 240, 250, 260, 240, 230],
+                    backgroundColor: 'rgba(0, 153, 102, 0.5)',
+                    borderColor: 'rgba(0, 153, 102, 1)',
+                    fill: true
+                },
+                {
+                    label: "Solar (kWh)",
+                    data: [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+                    backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    fill: true
+                },
+                {
+                    label: "Eólica (kWh)",
+                    data: [50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250, 270],
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: true
+                }
+            ]
+        };
+
+        const configArea = {
+            type: 'line',
+            data: dataArea,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    filler: {
+                        propagate: true
+                    },
+                    title: {
+                        display: true,
+                        text: 'Consumo de Energías por Mes (Último Año)'
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('graficaArea'), configArea);
+    </script>
+    
+</body>
+</html> -->
+<style>
+    .chart-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .chart-box {
+        width: 45%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .chart-box.full-width {
+        width: 90%;
+    }
+    .chart-box .recuadro {
+        border: 1px solid #333;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    .notable {
+        background-color: rgba(255, 255, 0, 0.2);
+        border: 2px solid #ff0;
+    }
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+</head>
+<body>
+<div class="chart-container">
+    <div class="chart-box">
+        <canvas id="grafica1"></canvas>
+        <div class="recuadro">Gráfico de Torta</div>
+    </div>
+    <div class="chart-box">
+        <canvas id="grafica3"></canvas>
+        <div class="recuadro">Gráfico de Barras</div>
+    </div>
+    <div class="chart-box full-width">
+        <canvas id="grafica2"></canvas>
+        <div class="recuadro">Gráfico de Líneas</div>
+    </div>
+    <div class="chart-box full-width notable">
+        <canvas id="grafica4"></canvas>
+        <div class="recuadro">Gráfico de Área</div>
+    </div>
+</div>
+<script>
+    const labelsPie = ['Solar', 'Eólica', 'Hidroeléctrica', 'Térmica'];
+    const colorsPie = ['rgb(255,204,0)', 'rgb(102,204,255)', 'rgb(0,153,102)', 'rgb(255,102,102)'];
+
+    const dataPie = {
+        labels: labelsPie,
+        datasets: [{
+            data: [30, 25, 20, 25],
+            backgroundColor: colorsPie
+        }]
+    };
+
+    const configPie = {
+        type: 'pie',
+        data: dataPie
+    };
+
+    const labelsLine = ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+                        '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019',
+                        '2020', '2021'];
+
+    const dataLine = {
+        labels: labelsLine,
+        datasets: [{
+            label: "Energía Eólica (GWh)",
+            data: [10, 20, 30, 45, 60, 80, 100, 150, 200, 250, 
+                   300, 400, 500, 600, 700, 800, 950, 1100, 1250, 
+                   1400, 1600, 1800, 2000, 2200, 2500],
+            borderColor: 'rgba(69, 140, 248, 0.8)',
+            fill: false,
+            tension: 0.1
+        }]
+    };
+
+    const configLine = {
+        type: 'line',
+        data: dataLine
+    };
+
+    const labelsBar = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+    const dataBar = {
+        labels: labelsBar,
+        datasets: [
+            {
+                label: "Electricidad (kWh)",
+                data: [300, 320, 310, 400, 450, 430, 410, 390, 420, 450, 460, 480],
+                backgroundColor: 'rgba(54, 162, 235, 0.5)'
+            },
+            {
+                label: "Hidroeléctrica (kWh)",
+                data: [200, 190, 180, 210, 220, 200, 230, 240, 250, 260, 240, 230],
+                backgroundColor: 'rgba(0, 153, 102, 0.5)'
+            },
+            {
+                label: "Solar (kWh)",
+                data: [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+                backgroundColor: 'rgba(255, 206, 86, 0.5)'
+            },
+            {
+                label: "Eólica (kWh)",
+                data: [50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250, 270],
+                backgroundColor: 'rgba(75, 192, 192, 0.5)'
+            }
+        ]
+    };
+
+    const configBar = {
+        type: 'bar',
+        data: dataBar,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Consumo de Energías por Mes (Último Año)'
+                }
+            }
+        }
+    };
+
+    const dataArea = {
+        labels: labelsBar,
+        datasets: [
+            {
+                label: "Electricidad (kWh)",
+                data: [300, 320, 310, 400, 450, 430, 410, 390, 420, 450, 460, 480],
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                fill: true
+            },
+            {
+                label: "Hidroeléctrica (kWh)",
+                data: [200, 190, 180, 210, 220, 200, 230, 240, 250, 260, 240, 230],
+                backgroundColor: 'rgba(0, 153, 102, 0.5)',
+                borderColor: 'rgba(0, 153, 102, 1)',
+                fill: true
+            },
+            {
+                label: "Solar (kWh)",
+                data: [100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320],
+                backgroundColor: 'rgba(255, 206, 86, 0.5)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                fill: true
+            },
+            {
+                label: "Eólica (kWh)",
+                data: [50, 70, 90, 110, 130, 150, 170, 190, 210, 230, 250, 270],
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: true
+            }
+        ]
+    };
+
+    const configArea = {
+        type: 'line',
+        data: dataArea,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                filler: {
+                    propagate: true
+                },
+                title: {
+                    display: true,
+                    text: 'Consumo de Energías por Mes (Último Año)'
+                }
+            }
+        }
+    };
+
+    new Chart(document.getElementById('grafica1'), configPie);
+    new Chart(document.getElementById('grafica2'), configLine);
+    new Chart(document.getElementById('grafica3'), configBar);
+    new Chart(document.getElementById('grafica4'), configArea);
+</script>
+</body>
+</html>

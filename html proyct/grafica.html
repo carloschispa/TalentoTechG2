@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+
+</head>
+<body>
+    <div style="width: 500px;">
+        <canvas id="grafica"></canvas>
+    </div>
+
+    <script>
+        const labels = [
+    '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+    '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019',
+    '2020', '2021', 
+];
+
+const dataset1 = {
+    label: "Energía Eólica (GWh)",
+    data: [
+        10, 20, 30, 45, 60, 80, 100, 150, 200, 250, 
+        300, 400, 500, 600, 700, 800, 950, 1100, 1250, 
+        1400, 1600, 1800, 2000, 2200, 2500
+    ],
+    borderColor: 'rgba(69, 140, 248, 0.8)',
+    fill: false,
+    tension: 0.1
+};
+
+const graph = document.querySelector("#grafica");
+
+const data = {
+    labels: labels,
+    datasets: [dataset1]
+};
+
+const config = {
+    type: 'line',
+    data: data,
+};
+
+new Chart(graph, config);
+
+    </script>
+</body>
+</html>

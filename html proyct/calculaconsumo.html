@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Consumo de Energía Eólica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .calculator {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Consumo de Energía Eólica</h1>
+        <div class="calculator">
+            <input type="number" id="energia" placeholder="Ingrese el consumo de energía eólica (kWh)">
+            <button onclick="calcular()">Calcular</button>
+            <p id="resultado"></p>
+        </div>
+    </div>
+    <script>
+        function calcular() {
+            const energia = document.getElementById('energia').value;
+            if (energia) {
+                const consumoAnual = energia * 12;
+                const porcentaje = (consumoAnual / 1000000) * 100; // Asumiendo 1,000,000 kWh como el total anual en Colombia
+                document.getElementById('resultado').innerText = `Consumo Anual: ${consumoAnual} kWh (${porcentaje.toFixed(2)}%)`;
+            } else {
+                document.getElementById('resultado').innerText = 'Por favor, ingrese un valor válido.';
+            }
+        }
+    </script>
+</body>
+</html>
